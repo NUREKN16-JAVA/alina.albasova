@@ -39,7 +39,6 @@
                 </fileset>
             </classpath>
             <formatter type="plain"/>
-            <!--<test name="ua.nure.kn.albasova.usermanagment.UserTest"/>-->
             <batchtest todir="test-report">
                 <fileset dir="${test-java-dir}">
                     <include name="**/*Test*.java"/>
