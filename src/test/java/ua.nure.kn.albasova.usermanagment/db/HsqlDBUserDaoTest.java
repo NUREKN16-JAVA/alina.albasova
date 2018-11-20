@@ -21,8 +21,6 @@ public class HsqlDBUserDaoTest extends DatabaseTestCase {
     private UserDAO dao;
     private ConnectionFactory connectionFactory;
     private static final Long ID = 0L;
-//    private static final String FIRSTNAME = "Ivan";
-//    private static final String LASTNAME = "Ivanov";
 
     @Before
     public void setUp() throws Exception {
