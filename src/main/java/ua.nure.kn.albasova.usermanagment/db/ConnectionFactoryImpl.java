@@ -5,10 +5,6 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConnectionFactoryImpl implements ConnectionFactory {
-//    private String driver = "org.hsqldb.jdbcDriver";
-//    private String url = "jdbc:hsqldb:file:db/Java_1_University";
-//    private String user = "sa";
-//    private String password = "";
     private String driver;
     private String url;
     private String user;

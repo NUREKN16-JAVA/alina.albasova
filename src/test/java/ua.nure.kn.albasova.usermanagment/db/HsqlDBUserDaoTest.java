@@ -20,6 +20,9 @@ public class HsqlDBUserDaoTest extends DatabaseTestCase {
     private User user;
     private UserDAO dao;
     private ConnectionFactory connectionFactory;
+    private static final Long ID = 0L;
+//    private static final String FIRSTNAME = "Ivan";
+//    private static final String LASTNAME = "Ivanov";
 
     @Before
     public void setUp() throws Exception {
@@ -68,4 +71,30 @@ public class HsqlDBUserDaoTest extends DatabaseTestCase {
         assertNotNull("Collection is null", collection);
         assertEquals("Collection size.", etalonSize, collection.size());
     }
+
+
+    @Test
+    public void testFind () throws DatabaseException {
+        User testUser = dao.find(ID);
+        assertNotNull(testUser);
+        assertEquals( user.getFirstName(),testUser.getFirstName());
+        assertEquals(user.getLastName(),testUser.getLastName());
+    }
+    @Test
+    public void testUpdate() throws DatabaseException {
+        User user = new User("Ivan","Komarov",new Date());
+        user.setId(0L);
+        dao.update(user);
+        User testUser = dao.find(user.getId());
+        assertNotNull(testUser);
+        assertEquals(user.getLastName(), testUser.getLastName());
+    }
+
+    @Test
+    public void testDelete() throws DatabaseException {
+        User testUser = new User(ID, "Ivan", "Ivanov", new Date());
+        dao.delete(testUser);
+        assertNull(dao.find(ID));
+    }
 }
+

@@ -86,6 +86,11 @@ public class User implements Serializable {
                 '}';
     }
 
+    /**
+     *
+     * @return full name of user
+     *
+     */
     public String getFullName(){
         return (new StringBuilder(getFirstName())).append(" ").append(getLastName()).toString();
     }
