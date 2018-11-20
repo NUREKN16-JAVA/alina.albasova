@@ -24,7 +24,6 @@ public class HsqlDBUserDaoTest extends DatabaseTestCase {
 
     @Before
     public void setUp() throws Exception {
-        //connectionFactory = new ConnectionFactoryImpl();
         getConnection();
         user = new User("Ivan","Ivanov",new Date());
         dao = new HsqlDBUserDao(connectionFactory);
@@ -35,6 +34,10 @@ public class HsqlDBUserDaoTest extends DatabaseTestCase {
 
     }
 
+    /**
+     * Test for creating new user record in DB method
+     * @throws DatabaseException
+     */
     @Test
     public void testCreate() throws DatabaseException {
         assertNull(user.getId());
@@ -59,7 +62,10 @@ public class HsqlDBUserDaoTest extends DatabaseTestCase {
         return dataSet;
     }
 
-
+    /**
+     * Test method to find and return all user records in DB
+     * @throws DatabaseException
+     */
 
     @Test
     public void testFindAll() throws DatabaseException {
@@ -70,6 +76,10 @@ public class HsqlDBUserDaoTest extends DatabaseTestCase {
         assertEquals("Collection size.", etalonSize, collection.size());
     }
 
+    /**
+     * Test for finding  user by ID
+     * @throws DatabaseException
+     */
 
     @Test
     public void testFind () throws DatabaseException {
@@ -78,6 +88,11 @@ public class HsqlDBUserDaoTest extends DatabaseTestCase {
         assertEquals( user.getFirstName(),testUser.getFirstName());
         assertEquals(user.getLastName(),testUser.getLastName());
     }
+
+    /**
+     * Test for updating user record in DB method
+     * @throws DatabaseException
+     */
     @Test
     public void testUpdate() throws DatabaseException {
         User user = new User("Ivan","Komarov",new Date());
@@ -88,6 +103,10 @@ public class HsqlDBUserDaoTest extends DatabaseTestCase {
         assertEquals(user.getLastName(), testUser.getLastName());
     }
 
+    /**
+     * Test for user deleting method
+     * @throws DatabaseException
+     */
     @Test
     public void testDelete() throws DatabaseException {
         User testUser = new User(ID, "Ivan", "Ivanov", new Date());
