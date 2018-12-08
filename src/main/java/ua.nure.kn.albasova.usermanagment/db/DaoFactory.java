@@ -3,40 +3,45 @@ package ua.nure.kn.albasova.usermanagment.db;
 import java.io.IOException;
 import java.util.Properties;
 
-public class DaoFactory {
-    public static final String USER_DAO = "dao.ua.nure.kn.albasova.usermanagment.db.UserDAO";
-    private final Properties properties;
-    private final static DaoFactory INSTANCE = new DaoFactory();
+public abstract class DaoFactory {
+    protected static final String USER_DAO = "dao.ua.nure.kn.albasova.usermanagment.db.UserDAO";
+    private static final String DAO_FACTORY = "dao.factory";
+    protected static Properties properties;
+    private static DaoFactory instance;
 
-    public static DaoFactory getInstance() {
-        return INSTANCE;
-    }
-
-    private DaoFactory() {
+    static {
         properties = new Properties();
         try {
-            properties.load(getClass().getClassLoader().getResourceAsStream("settings.properties"));
+            properties.load(DaoFactory.class.getResourceAsStream("/settings.properties"));
         } catch (IOException e) {
-            throw new RuntimeException();
+            throw new RuntimeException(e);
         }
     }
 
-    private ConnectionFactory getConnectionFactory(){
+    public static synchronized DaoFactory getInstance() {
+        if(instance == null){
+            try {
+                Class factoryClass = Class.forName(properties.getProperty(DAO_FACTORY));
+                instance = (DaoFactory) factoryClass.newInstance();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return instance;
+    }
+
+    public static void init(Properties properties2) {
+        properties = properties2;
+        instance = null;
+    }
+
+
+    protected ConnectionFactory getConnectionFactory(){
         String user = properties.getProperty("connection.user");
         String password = properties.getProperty("connection.password");
         String url = properties.getProperty("connection.url");
         String driver = properties.getProperty("connection.driver");
         return new ConnectionFactoryImpl(driver, url, user, password);
     }
-    public UserDAO getUserDAO(){
-        UserDAO result = null;
-        try {
-            Class clazz = Class.forName(properties.getProperty(USER_DAO));
-            result = (UserDAO) clazz.newInstance();
-            result.setConnectionFactory(getConnectionFactory());
-        } catch (Exception e) {
-            throw new RuntimeException();
-        }
-        return result;
-    }
+    public abstract UserDAO getUserDAO();
 }

@@ -11,8 +11,10 @@ public class User implements Serializable {
     private String lastName;
     private Date dateOfBirth;
 
-    public User(){
-        super();
+
+    public User() {
+        firstName = "";
+        lastName = "";
     }
 
     public User(Long id, String firstName, String lastName, Date dateOfBirth) {
@@ -61,19 +63,28 @@ public class User implements Serializable {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return Objects.equals(id, user.id) &&
-                Objects.equals(firstName, user.firstName) &&
-                Objects.equals(lastName, user.lastName) &&
-                Objects.equals(dateOfBirth, user.dateOfBirth);
+    public int hashCode() {
+        if (this.getId() == null) {
+            return 0;
+        }
+        return this.getId().hashCode();
     }
 
+    /* (non-Javadoc)
+     * @see java.lang.Object#equals(java.lang.Object)
+     */
     @Override
-    public int hashCode() {
-        return Objects.hash(id, firstName, lastName, dateOfBirth);
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (this == obj) {
+            return true;
+        }
+        if (this.getId() == null && ((User) obj).getId() == null) {
+            return true;
+        }
+        return this.getId().equals(((User) obj).getId());
     }
 
     @Override
