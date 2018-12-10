@@ -104,7 +104,7 @@ public class DetailsPanel extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if ("ok".equalsIgnoreCase(e.getActionCommand())) {
+        if ("ok".equalsIgnoreCase(e.getActionCommand())) {//$NON-NLS-1$
             this.setVisible(false);
         }
         this.setVisible(false);
