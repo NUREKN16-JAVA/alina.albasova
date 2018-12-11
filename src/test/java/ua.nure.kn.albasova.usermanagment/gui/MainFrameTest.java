@@ -23,6 +23,11 @@ public class MainFrameTest extends JFCTestCase {
     //private List<User> users;
     private MainFrame mainFrame;
 
+    /**
+     * In the setUp () method, we replace the real database with
+     * a Mock object to test the graphical interface without modifying the database.
+     * @throws Exception
+     */
     public void setUp() throws Exception {
         super.setUp();
 
@@ -38,6 +43,13 @@ public class MainFrameTest extends JFCTestCase {
         mainFrame.setVisible(true);
     }
 
+    /**
+     * This method try to find gui component by it's type and name,
+     * If we can't find component, method return message about this problem
+     * @param componentClass - Class of gui component
+     * @param name - name of gui that we set during initialization
+     * @return component, that we found
+     */
     private Component find(Class<?> componentClass, String name){
         NamedComponentFinder finder;
         finder = new NamedComponentFinder(componentClass, name);
@@ -56,11 +68,13 @@ public class MainFrameTest extends JFCTestCase {
         super.tearDown();
     }
 
+    /**
+     * This test checks main panel of our gui
+     */
     public void testBrowseControls() {
         find(JPanel.class, "browsePanel");
         JTable table = (JTable) find(JTable.class, "userTable");
         assertEquals(3, table.getColumnCount());
-        // later we must internationalizate
         assertEquals(Messages.getString("user_managment.userTable"), table.getColumnName(0));
         assertEquals(Messages.getString("user_managment.userTable2"), table.getColumnName(1));
         assertEquals(Messages.getString("user_managment.userTable3"), table.getColumnName(2));
@@ -70,6 +84,11 @@ public class MainFrameTest extends JFCTestCase {
         find(JButton.class, "detailsButton");
     }
 
+    /**
+     * Test adding new user to database, using graphical interface
+     * This test simulates the actions of a person who
+     * is trying to add a new record to the database using a graphical interface.
+     */
     public void testAddUser(){
         String firstName = "John";
         String lastName = "Doe";

@@ -30,10 +30,12 @@ public class MainFrame extends JFrame {
         initialize();
     }
 
+    /**
+     * In this method we create settings for our window
+     */
     private void initialize() {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(FRAME_WIDTH, FRAME_HEIGHT);
-        //need internalization
         this.setTitle(Messages.getString("user_managment.mainFrame1"));
         this.setContentPane(getContentPanel());
 
