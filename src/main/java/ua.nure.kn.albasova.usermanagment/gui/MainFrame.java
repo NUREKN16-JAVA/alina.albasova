@@ -7,6 +7,7 @@ import ua.nure.kn.albasova.usermanagment.util.Messages;
 
 import javax.swing.*;
 import java.awt.*;
+import java.sql.SQLException;
 
 public class MainFrame extends JFrame {
 

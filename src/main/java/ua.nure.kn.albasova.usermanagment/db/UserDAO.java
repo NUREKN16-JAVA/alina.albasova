@@ -26,6 +26,7 @@ public interface UserDAO {
      */
     public Collection<User> findAll() throws DatabaseException;
 
+    public Collection<User> find(String firstName, String lastName) throws DatabaseException;
     /**
      * Update user record in DB table USERS if its id equals to id of
      * @param user
