@@ -1,6 +1,7 @@
 package ua.nure.kn.albasova.usermanagment.web;
 
 
+import ua.nure.kn.albasova.usermanagment.User;
 import ua.nure.kn.albasova.usermanagment.db.DaoFactory;
 import ua.nure.kn.albasova.usermanagment.db.DatabaseException;
 
@@ -43,7 +44,22 @@ public class BrowseServlet extends HttpServlet {
     }
 
     private void edit(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String idStr = req.getParameter("id");
+        if(idStr == null || idStr.trim().length() == 0) {
+            req.setAttribute("error", "You must select a user");
+            req.getRequestDispatcher("/browse.jsp").forward(req, resp);
+            return;
+        }
+        try {
+            User user = DaoFactory.getInstance().getUserDAO().find(new Long(idStr));
+            req.getSession().setAttribute("user", user);
 
+        }catch (Exception e){
+            req.setAttribute("error", "ERROR: " + e.toString());
+            req.getRequestDispatcher("/browse.jsp").forward(req, resp);
+            return;
+        }
+        req.getRequestDispatcher("/edit.jsp").forward(req, resp);
     }
 
     private void delete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
