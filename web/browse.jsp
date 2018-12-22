@@ -1,9 +1,9 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head><title>User management/Browse</title></head>
 <body>
 <form action="<%=request.getContextPath()%>/browse" method="post">
-<table id=”userTable” border=”1”>
+<table id="userTable" border="1">
     <tr>
         <th></th>
         <th>First name</th>
@@ -11,12 +11,12 @@
         <th>Date of birth</th>
     </tr>
     <c:forEach var="user" items="${sessionScope.users}">
-    <tr>
-        <td><input type=”radio” name=”id” id=”id” value="${user.id}"></td>
+        <tr>
+        <td><input type="radio" name="id" id="id" value="${user.id}"></td>
         <td>${user.firstName}</td>
         <td>${user.lastName}</td>
         <td>${user.dateOfBirth}</td>
-    </tr>
+       </tr>
     </c:forEach>
 </table>
     <input type="submit" name="addButton" value="Add">
@@ -27,7 +27,7 @@
 </form>
 <c:if test="${requestScope.error != null}">
     <script>
-        alert("${requestScope.error}]")
+        alert("${requestScope.error}")
     </script>
 </c:if>
 </body>
