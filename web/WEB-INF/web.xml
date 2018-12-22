@@ -9,8 +9,30 @@
 
     </servlet>
 
+    <servlet>
+        <servlet-name>Edit servlet</servlet-name>
+        <servlet-class>ua.nure.kn.albasova.usermanagment.web.EditServlet</servlet-class>
+
+    </servlet>
+
+    <servlet>
+        <servlet-name>Add servlet</servlet-name>
+        <servlet-class>ua.nure.kn.albasova.usermanagment.web.AddServlet</servlet-class>
+
+    </servlet>
+
     <servlet-mapping>
         <servlet-name>Browse servlet</servlet-name>
         <url-pattern>/browse</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>Edit servlet</servlet-name>
+        <url-pattern>/edit</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>Add servlet</servlet-name>
+        <url-pattern>/add</url-pattern>
     </servlet-mapping>
 </web-app>
