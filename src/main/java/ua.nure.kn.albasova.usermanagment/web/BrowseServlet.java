@@ -14,7 +14,18 @@ import java.util.Collection;
 public class BrowseServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        browse(req, resp);
+        if(req.getParameter("addButton") != null){
+            add(req, resp);
+        }else if (req.getParameter("editButton") != null){
+            edit(req, resp);
+        }else if(req.getParameter("detailsButton") != null){
+            details(req, resp);
+        }else if (req.getParameter("deleteButton") != null){
+            delete(req, resp);
+        } else {
+            browse(req, resp);
+        }
+
     }
 
     private void browse(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -26,5 +37,20 @@ public class BrowseServlet extends HttpServlet {
         } catch (DatabaseException e) {
             throw new ServletException();
         }
+    }
+
+    private void add(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    }
+
+    private void edit(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+    }
+
+    private void delete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+    }
+
+    private void details(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
     }
 }
