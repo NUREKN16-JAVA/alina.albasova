@@ -1,4 +1,4 @@
-package ua.nure.kn.albasova.usermanagment.webapp;
+package ua.nure.kn.albasova.usermanagment.web;
 
 import com.mockobjects.dynamic.Mock;
 import com.mockrunner.servlet.BasicServletTestCaseAdapter;

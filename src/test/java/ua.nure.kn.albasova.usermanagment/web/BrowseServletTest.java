@@ -1,4 +1,4 @@
-package ua.nure.kn.albasova.usermanagment.webapp;
+package ua.nure.kn.albasova.usermanagment.web;
 
 import ua.nure.kn.albasova.usermanagment.User;
 
