@@ -3,6 +3,7 @@ package ua.nure.kn.albasova.usermanagment.web;
 import ua.nure.kn.albasova.usermanagment.User;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class EditServletTest extends MockServletTestCase {
@@ -20,7 +21,9 @@ public class EditServletTest extends MockServletTestCase {
         addRequestParameter("id", "1000");
         addRequestParameter("firstName", "John");
         addRequestParameter("lastName", "Doe");
-        addRequestParameter("date", DateFormat.getInstance().format(date));
+        SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
+        //addRequestParameter("date", DateFormat.getInstance().format(date));
+        addRequestParameter("date", format.format(date));
         addRequestParameter("okButton", "Ok");
         doPost();
 
