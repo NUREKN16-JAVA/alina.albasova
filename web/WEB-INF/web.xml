@@ -21,6 +21,18 @@
 
     </servlet>
 
+    <servlet>
+        <servlet-name>Delete servlet</servlet-name>
+        <servlet-class>ua.nure.kn.albasova.usermanagment.web.DeleteServlet</servlet-class>
+
+    </servlet>
+
+    <servlet>
+        <servlet-name>Details servlet</servlet-name>
+        <servlet-class>ua.nure.kn.albasova.usermanagment.web.DetailsServlet</servlet-class>
+
+    </servlet>
+
     <servlet-mapping>
         <servlet-name>Browse servlet</servlet-name>
         <url-pattern>/browse</url-pattern>
@@ -34,5 +46,15 @@
     <servlet-mapping>
         <servlet-name>Add servlet</servlet-name>
         <url-pattern>/add</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>Delete servlet</servlet-name>
+        <url-pattern>/delete</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>Details servlet</servlet-name>
+        <url-pattern>/details</url-pattern>
     </servlet-mapping>
 </web-app>

@@ -1,7 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
-
 <jsp:useBean id="user" class="ua.nure.kn.albasova.usermanagment.User" scope="session" />
 <html>
 <head>

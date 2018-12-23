@@ -64,10 +64,38 @@ public class BrowseServlet extends HttpServlet {
     }
 
     private void delete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        String idString = req.getParameter("id");
+        if (idString == null || idString.trim().length() == 0) {
+            req.setAttribute("error", "You must select a user");
+            req.getRequestDispatcher("/browse.jsp").forward(req, resp);
+            return;
+        }
+        try {
+            User user = DaoFactory.getInstance().getUserDAO().find(new Long(idString));
+            req.getSession().setAttribute("user", user);
+        } catch (NumberFormatException | DatabaseException e) {
+            req.setAttribute("error", "Error: "+e.getMessage());
+            req.getRequestDispatcher("/browse.jsp").forward(req, resp);
+            return;
+        }
+        req.getRequestDispatcher("/delete.jsp").forward(req, resp);
     }
 
     private void details(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        String idString = req.getParameter("id");
+        if (idString == null || idString.trim().length() == 0) {
+            req.setAttribute("error", "You must select a user");
+            req.getRequestDispatcher("/browse.jsp").forward(req, resp);
+            return;
+        }
+        try {
+            User user = DaoFactory.getInstance().getUserDAO().find(new Long(idString));
+            req.getSession().setAttribute("user", user);
+        } catch (NumberFormatException | DatabaseException e) {
+            req.setAttribute("error", "Error: "+e.getMessage());
+            req.getRequestDispatcher("/browse.jsp").forward(req, resp);
+            return;
+        }
+        req.getRequestDispatcher("/details.jsp").forward(req, resp);
     }
 }
